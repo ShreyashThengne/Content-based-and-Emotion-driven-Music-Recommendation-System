@@ -252,6 +252,10 @@ def recomm(emotion):
     data = pd.read_csv('datasets/final_data.csv')
 
     data['sim'] = 0
+
+    # we already have file named extracting_data.ipynb which is used to get data and have used a 
+    # neural network model to detect the emotion of the songs using the features,
+    # so now we are just importing using the detected emotion
     data = data[data['emotion'] == emotion]
 
     data_filtered = data.drop(['name', 'popularity', 'date_added', 'release_year', 'type', 'id', 'uri', 'track_href',  'analysis_url', 'artists', 'Unnamed: 0', 'key', 'mode', 'duration_ms', 'time_signature'], axis=1)
