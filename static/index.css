@@ -1,0 +1,488 @@
+body{
+    background-color: #1A1920;
+    padding: 0%;
+    font-family: 'Sacramento', cursive;
+    margin: 0%;
+    text-align: center;
+}
+
+#check{
+    display: none;
+ }
+ #btn_b{
+     visibility: hidden;
+ }
+ .menu{
+     cursor: pointer;
+     margin-right: 0%;
+     display: block;
+ 
+ }
+ 
+ .menu:hover{
+     transition: 1s;
+ }
+ .menu:active{
+     transform: scale(2);
+ }
+ .header h1{
+    margin: 0 auto 0 auto;
+    font-size: 4em;
+    color: #00ADB5;
+    padding: 0%;
+    display: inline-block;
+    
+    
+ }
+ 
+ .header h1:hover{
+     transform: scale(1.2);
+     cursor: pointer;
+ }
+ .header1 {
+     display: none;
+     
+     
+  }
+ 
+
+ .navbar ul{
+     display: flex;
+     text-align: center;
+     justify-content: center;
+ }
+ .navbar ul li{
+     text-decoration: none;
+     padding: 1%;
+     list-style: none;
+     font-family: 'Baloo 2', cursive;
+ }
+ #iconul1{
+     display: contents;
+ 
+ }
+ #iconnav1{
+     display:none ;
+ }
+ #iconul1:hover #iconnav1{
+     
+     transform: scale(1.5);
+     display:inline-block;
+     
+ }
+ 
+ #iconul2{
+     display: contents;
+ }
+ #iconnav2{
+     display:none ;
+ }
+ #iconul2:hover #iconnav2{
+ 
+     transform: scale(1.5);
+     display:inline-block;
+     
+ }
+ #iconul3{
+     display: contents;
+ }
+ #iconnav3{
+     display:none ;
+ }
+ #iconul3:hover #iconnav3{
+ 
+     transform: scale(1.5);
+     display:inline-block;
+     
+ }
+ #iconul4{
+     display: contents;
+ }
+ #iconnav4{
+     display:none ;
+ }
+ #iconul4:hover #iconnav4{
+ 
+     transform: scale(1.5);
+     display:inline-block;
+     
+ }
+ #iconul5{
+     display: contents;
+ }
+ #iconnav5{
+     display:none ;
+ }
+ #iconul5:hover #iconnav5{
+ 
+     transform: scale(1.5);
+     display:inline-block;
+     
+     
+ }
+ 
+ 
+ #pid{
+     font-size: 100%;
+ }
+ 
+ #changecolor lord-icon{
+    cursor: pointer;
+ }
+ #changecolor button{
+     background-color: #FF5722;
+     font-size: 80%;
+     padding: 0 ;
+     margin: 0 auto;
+     border-radius: 2rem;
+     color: #EEEEEE;
+     cursor: pointer;
+ }
+ #changecolor button:active{
+     background-color:#28bdc596;
+ }
+ 
+ #changecolor button span{
+     margin: 0 1% ;
+ }
+ #changecolor lord-icon:hover{
+     transform: scale(1.2);
+ }
+ #changecolor lord-icon:active{
+   transform:scale(1);
+ }
+ 
+ #changecolor button:hover{
+     transform:scale(1.2);
+ }
+ #changecolor button:active{
+     transform:scale(1);
+ }
+ #resetchange button{
+     background-color: #FF5722;
+     font-size: 80%;
+     padding: 0 ;
+     margin: 0 auto;
+     border-radius: 2rem;
+     color: #EEEEEE;
+     cursor: pointer;
+ }
+ #resetchange button:active{
+     background-color:#28bdc596;
+ }
+ 
+ #resetchange lord-icon{
+     cursor: pointer;
+ }
+ #resetchange lord-icon:hover{
+     transform: scale(1.2);
+ }
+ #resetchange lord-icon:active{
+     transform: scale(1);
+ }
+ #resetchange button:hover{
+     transform: scale(1.2);
+ }
+ #resetchange button:active{
+     transform: scale(1);
+ }
+ 
+ #resetchange button span{
+     margin: 0 1% ;
+ }
+ 
+ .navbar ul li a{
+     text-decoration: none;
+     color: #EEEEEE;
+     font-size:1rem;
+     font-weight: bold;
+     
+ }
+ /*.navbar ul li:hover{
+   color: rgb(21, 49, 74);
+   background: #dff3ff;
+   background-image: -webkit-linear-gradient(top, #ffe0c1, #fafafa);
+   background-image: -webkit-linear-gradient(bottom, #ffe0c1, #fafafa);
+   text-decoration: none;
+   border-radius: 15%;
+ 
+ }*/
+ .navbar ul li:hover{
+     color: rgb(255, 255, 255);
+     background: #dff3ff;
+     background-image: -webkit-linear-gradient(top, #00ADB5, #00ADB5);
+     background-image: -webkit-linear-gradient(bottom, #00ADB5, #00ADB5);
+     text-decoration: none;
+     border-radius: 1.5rem;
+     cursor: pointer;
+   }
+   
+ 
+   .navbar ul li a:active{
+    color: #F9ED69;
+   }  
+
+   @media only screen and (max-width:415px){
+    #btn_b{
+        visibility:visible;
+    }
+    .logo{
+        width: 25%;
+        display: block;
+        text-align: left;
+    }
+    .mainmenu{
+        transition: 2s;
+        margin-top: -450px;
+        margin-left: -250px;
+    }
+    .header h1{
+        margin-left: 2%;
+        font-size: 2em;
+        color: #00f2ff;
+        display:block;
+        text-align: left;
+        
+     }
+     .header h1:hover{
+        transform: scale(1);
+    } 
+    .navbar{
+        margin-left: -10%;
+    }
+    .navbar ul{
+        display: block;
+        text-align: left;
+        
+    }
+    .navbar ul li a{
+        text-decoration: none;
+        color: #1B262C;
+        font-size:0.8rem;
+        font-weight: bold;
+        
+    }
+    .navbar ul li a:hover{
+        padding-left: 10%;
+        cursor: pointer;
+      }
+    .header1{
+        display: block;
+    }
+    .header1 h1{
+        visibility: visible;
+        font-size: 2em;
+        color: #00ADB5;
+        padding: 0%;
+    }
+    #check:checked ~ .mainmenu{
+      margin-left: 0px;
+      margin-top: 0px;
+      background-color: #adfbffad;
+    }
+    .upper-container .sub-container .content .div-r lottie-player{
+        width: 100px;
+        height: 100px;
+    }
+
+}
+.container{
+    
+    background: url(https://img1.wsimg.com/isteam/ip/c76862d1-4b72-4973-80c5-7d12414010ec/53efcb4e-0752-44c0-b66c-c03d5326b342.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: 100%;
+    height: 530px;
+    margin: auto;
+    margin-top: 5%;
+}
+ .main-container{
+    display: flex;
+    
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(54, 51, 51, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 2px solid #f1f1f1;
+    position: absolute;
+    top: 155%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 90%;
+    border-radius: 1.2rem;
+    text-align: center;
+    
+}
+ .main-container .left{
+    margin: 5%;
+    
+}
+ .main-container .left h1{
+    font-size: 5em;
+    color: #00f2ff;
+    
+}
+ .main-container .right {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+#btn{
+    width: 150px;
+}
+.main-container .right input{
+    width: 40%;
+    padding: 2%;
+    border-color: aqua;
+    border-width: 3px; 
+    border: none; 
+    border-bottom: 2px solid #00acb5a9;
+    border-radius: 2rem;
+    color:#000000 ;
+}
+.main-container .right input:focus{
+    outline: none;
+    transform: scale(1.2);
+}
+
+.upper-container .sub-container{
+   display: flex;
+}
+.upper-container .sub-container .content {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    
+}
+
+.upper-container .sub-container .content .div-l{
+    color: #fff;
+    font-family: 'Baloo 2', cursive;
+    margin-right: 5%;
+    width: fit-content;
+}
+.upper-container .sub-container .content .div-r lottie-player{
+    width: 400px;
+    height: 400px;
+}
+
+
+
+
+
+
+
+
+.contact-us{
+    margin-top:10% ;
+}
+
+.contact-us h1{
+    padding:2% 0%;
+    text-align: center;
+    color: #EEEEEE;
+}
+.inner-div{
+    
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+.inner-div .left-cont div{
+    justify-content: center;
+    display: flex;
+}
+.inner-div .right-cont textarea{
+    margin-top: 2%;
+    border-radius: 0.5rem;
+    width: 60%;
+    border: #e8e2e298;
+    padding: 1%;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgb(44, 44, 44);
+    font-size: 1.2rem;
+}
+
+.inner-div .right-cont input{
+    width: 60%;
+    
+    border: #686868;
+    font-size: 1.2rem;
+    background-color: #fff;
+    padding: 1%;
+    margin-top: 2%;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgb(44, 44, 44);
+    
+    
+}
+.inner-div .right-cont input:focus {
+    box-shadow: 0 2px 3px #ccc;
+    border-bottom: 0.25em solid #0f5177;
+    top:-2px;
+    transition: 0.5s;
+    
+}
+
+.inner-div .right-cont textarea:focus {
+    box-shadow: 0 2px 3px #ccc;
+    border-bottom: 0.25em solid #0f5177;
+    top:-2px;
+    transition: 0.5s;
+}  
+.inner-div .right-cont #submit{
+    width: 30%;
+    background-color:#7743DB;
+    color: #fff;
+}
+.inner-div .right-cont #submit:hover{
+    box-shadow: 0 2px 3px #ccc;
+    border-bottom: 0.25em solid #3c06a0;
+    top:-2px;
+    transition: 0.5s;
+}
+.boxcontact{
+    align-items: center;
+    background-color: #F6C6EA;
+    margin: 1%;
+    
+    font-size: 80%;
+    justify-content: center;
+    width: 25%;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 3px rgb(44, 44, 44);
+}
+.boxcontact a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:560px){
+    .inner-div .left-cont div{
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
+    .boxcontact{
+        width: 60%;
+        align-items: center;   
+    }
+    .inner-div .right-cont input{
+        width: 70%;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
+    .inner-div .right-cont textarea{
+        width: 70%;
+    }
+    
+
+}

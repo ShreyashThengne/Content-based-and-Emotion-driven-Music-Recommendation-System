@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ff9900, #ffcc00);
+            /* Replace the colors with the desired gradient colors */
+            background-size: cover; /* Ensure the gradient covers the entire viewport */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+        }
+
+        /* Additional styling for content */
+        .content {
+            text-align: center;
+            padding: 100px;
+        }
+    </style> -->
+
+    <style>
+        body {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .episodes {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track {
+            min-width: max-content;
+            margin-bottom: .8rem;
+            padding: .8rem 1rem;
+            border-radius: 10px;
+            border: 0;
+            background: #191414;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .track:hover {
+            background: #1Db954;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>Emotion Detected: {{ emotion }}</h4>
+    <div>
+        <div id="embed-iframe"></div>
+        <script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async>
+        </script>
+        <script type="text/javascript">
+            window.onSpotifyIframeApiReady = (IFrameAPI) => {
+                const element = document.getElementById('embed-iframe');
+                const options = {
+                    width: '100%',
+                    height: '200',
+                    uri: 'spotify:track:7makk4oTQel546B0PZlDM5'
+                };
+                const callback = (EmbedController) => {
+                    document.querySelectorAll('.track').forEach(
+                        track => {
+                            track.addEventListener('click', () => {
+                                EmbedController.loadUri(track.dataset.spotifyId)
+                            });
+                        })
+                };
+                IFrameAPI.createController(element, options, callback);
+            };
+        </script>
+
+        <div class="episodes">
+            {% for name, id in zipped %}
+                <button class="track" data-spotify-id= "spotify:track:{{ id }}" >
+                    {{ name }}
+                </button>
+            <!-- <button class="episode" data-spotify-id="spotify:episode:43cbJh4ccRD7lzM2730YK3">
+                What is Backstage?
+            </button>
+            <button class="episode" data-spotify-id="spotify:episode:6I3ZzCxRhRkNqnQNo8AZPV">
+                Introducing Nerd Out@Spotify                        
+            </button> -->
+            {% endfor %}
+        </div>
+
+        
+    </div>
+</body>
+
+</html>
