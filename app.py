@@ -177,9 +177,11 @@ def main_app():
     # this one will create the song features columns vector
     recomm_vec1 = np.array(list(map(lambda col: recomm_vec_df[col].mean(), recomm_vec_df.loc[:, :"tempo"].columns)))
     # this one will create the ohe columns till current year vector
-    recomm_vec2 = np.array(list(map(lambda col: sum(recomm_vec_df[col]), recomm_vec_df.loc[:, "popu|0":f"year|{datetime.today().year}"].columns)))
+    recomm_vec2 = np.array(list(map(lambda col: sum(recomm_vec_df[col]), 
+                                    recomm_vec_df.loc[:, "popu|0":f"year|{datetime.today().year}"].columns)))
     # artists only ohe columns vector
-    recomm_vec3 = np.array(list(map(lambda col: sum(recomm_vec_df[col]), recomm_vec_df.iloc[:, -len(artists_excel['artists']):].columns)))
+    recomm_vec3 = np.array(list(map(lambda col: sum(recomm_vec_df[col]), 
+                                    recomm_vec_df.iloc[:, -len(artists_excel['artists']):].columns)))
 
     return redirect(url_for('emo'))
 
@@ -188,13 +190,8 @@ emotion = ''
 #emotion code
 @app.route('/emo')
 def emo():
-   # delay(delay=40)
-    # time.sleep(0.8)
-    # x = 0
     face_cascade = cv2.CascadeClassifier('haarcascade.xml')
     cap = cv2.VideoCapture(0)
-        # time.sleep(0.1)
-        # x += 1
 
     # while True:
     ret,frame = cap.read()
@@ -207,14 +204,9 @@ def emo():
 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 3)
-    # emotion_list = sorted(result[0]['emotion'])
-    # emotion = emotion_list[0]
+
     print(result[0]['emotion'])
 
-    # values = list(result[0]['emotion'].values())
-    # values.sort()
-    # sorted_emo = {values[i]: i for i in values}
-    # emotion_list = sorted_emo.keys()
     x = result[0]['emotion']
     sorted_emo = {k: v for k, v in sorted(x.items(), key=lambda item: item[1])}
     
@@ -234,16 +226,8 @@ def emo():
     _, buffer = cv2.imencode('.jpg', frame)
     frame = buffer.tobytes()
 
-    # yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-    # if cv2.waitKey(1) & 0xff == ord('q'):
-    #     break
-    return redirect(url_for('recomm', emotion = emotion))
-    # print(emotion)
-    # cap.release()
-    # cv2.destroyAllWindows()
-
     #output: emotion
+    return redirect(url_for('recomm', emotion = emotion))
 
 @app.route('/recomm/<emotion>')
 def recomm(emotion):
@@ -251,10 +235,9 @@ def recomm(emotion):
     # this is the pre-processed dataset containing the 1000s of songs
     data = pd.read_csv('datasets/final_data.csv')
 
-    data['sim'] = 0
     data = data[data['emotion'] == emotion]
 
-    data_filtered = data.drop(['name', 'popularity', 'date_added', 'release_year', 'type', 'id', 'uri', 'track_href',  'analysis_url', 'artists', 'Unnamed: 0', 'key', 'mode', 'duration_ms', 'time_signature'], axis=1)
+    data_filtered = data.drop(['name', 'popularity', 'date_added', 'release_year', 'type', 'id', 'uri', 'track_href',  'analysis_url', 'artists', 'Unnamed: 0', 'key', 'mode', 'duration_ms', 'time_signature', 'emotion'], axis=1)
     # data_filtered.drop(0, axis=1, inplace=True)
 
     data_filtered['tempo'] = data_filtered['tempo'].apply(lambda x: (x - min(data_filtered['tempo'])) / (max(data_filtered['tempo'] - min(data_filtered['tempo']))))
@@ -275,15 +258,15 @@ def recomm(emotion):
     
 
 
-    recommendations = pd.DataFrame({'name': data['name'], 'artists':data['artists'], 'id': data['id'], 'sim': data['sim']})
+    recommendations = pd.DataFrame({'name': data['name'], 'artists':data['artists'], 'id': data['id']})
     for i in range(len(data_filtered)):
         # this contains the columns from start till the ohe
         data_1 = data_filtered.loc[:, :"tempo"].iloc[i].values
         # this contains the ohe columns till current year
         data_2 = data_filtered.loc[:, "popu|0":f"year|{datetime.today().year}"].iloc[i].values
         # this contains the artists only columns
-        print(artists_excel)
-        data_3 = data_filtered.iloc[:, (-len(artists_excel['artists']) - 1):-1].iloc[i].values
+        print(data_filtered.columns, "\n\n")
+        data_3 = data_filtered.iloc[:, -len(artists_excel['artists']):].iloc[i].values
 
         sim1 = np.linalg.norm(recomm_vec1 - data_1)  # euclidian distance
         '''
@@ -293,8 +276,9 @@ def recomm(emotion):
         '''
 
         # simply using dot product
+        
         sim2 = np.dot(recomm_vec2, data_2)
-        print("1: ",recomm_vec3, "2: ", data_3)
+        # print("1: ",len(recomm_vec3), "2: ", data_3.columns)
         sim3 = np.dot(recomm_vec3, data_3)
         
         l1.append(round(sim1, 6))
@@ -309,7 +293,7 @@ def recomm(emotion):
 
     score = l1 + l2 + l3
 
-    recommendations['sim'] = recommendations['sim'] + score  # as sim col is already filled with emotion effiency score
+    recommendations['sim'] = score  # as sim col is already filled with emotion effiency score
 
 
 
@@ -317,7 +301,7 @@ def recomm(emotion):
     recommendations.drop_duplicates(['id'], inplace=True)
 
     # sorting the recommendations
-    recommendations = recommendations.sort_values(['sim'], axis=0, ascending=False)
+    recommendations = recommendations.sort_values(['sim'], axis=0, ascending=False).dropna()
 
     recommendations = recommendations.reset_index().drop('index', axis=1)
     # print(recommendations.head(10))

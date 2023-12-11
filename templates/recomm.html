@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- <style>
+    <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ff9900, #ffcc00);
+            background: linear-gradient(to bottom, #00bbff, #ffcc00);
             /* Replace the colors with the desired gradient colors */
             background-size: cover; /* Ensure the gradient covers the entire viewport */
             background-attachment: fixed; /* Keep the background fixed while scrolling */
@@ -22,7 +22,7 @@
             text-align: center;
             padding: 100px;
         }
-    </style> -->
+    </style>
 
     <style>
         body {
@@ -41,8 +41,8 @@
             padding: .8rem 1rem;
             border-radius: 10px;
             border: 0;
-            background: #191414;
-            color: #fff;
+            background: #caf4dc;
+            color: #000000;
             cursor: pointer;
         }
 
@@ -53,9 +53,15 @@
 </head>
 
 <body>
-    <h4>Emotion Detected: {{ emotion }}</h4>
+    <h4 style="position: relative; left: 1070px; top: 100px; font-size: 35px; font-family:monospace;">Detected Emotion: {{ emotion }}</h4>
+
     <div>
+        <br>
+        <br>
         <div id="embed-iframe"></div>
+        <br>
+        <br>
+        <br>
         <script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async>
         </script>
         <script type="text/javascript">
