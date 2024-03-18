@@ -1,7 +1,7 @@
 # Music-Recommendation-System
 Content based and Emotion-driven Music Recommendation System
 
-app.py is the Flask App which is to be executed for running this project
+**app.py is the Flask App which is to be executed for running this project**
 
 Developed a personalized music recommendation system based on user preferences and emotions. Used Spotify API to get user playlist’s data for generating recommendations. 
 
