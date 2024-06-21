@@ -13,9 +13,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from datetime import datetime
 import cv2
-print("running1!")
 from deepface import DeepFace
-print("running2!")
 from flask import Flask, render_template, url_for, request, redirect
 import time
 
@@ -205,8 +203,6 @@ def emo():
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 3)
 
-    print(result[0]['emotion'])
-
     x = result[0]['emotion']
     sorted_emo = {k: v for k, v in sorted(x.items(), key=lambda item: item[1])}
     
@@ -217,8 +213,6 @@ def emo():
             emotion = emotion_list[-3]
         else:
             emotion = emotion_list[-2]
-    # emotion = result[0]['dominant_emotion']
-    # print(emotion)
     txt = str(emotion)
 
     cv2.putText(frame, txt, (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 3)
@@ -239,6 +233,7 @@ def recomm(emotion):
     # we already have file named extracting_data.ipynb which is used to get data and have used a 
     # neural network model to detect the emotion of the songs using the features,
     # so now we are just importing using the detected emotion
+    if emotion == 'neutral': emotion = 'chill'
     data = data[data['emotion'] == emotion]
 
     data_filtered = data.drop(['name', 'popularity', 'date_added', 'release_year', 'type', 'id', 'uri', 'track_href',  'analysis_url', 'artists', 'Unnamed: 0', 'key', 'mode', 'duration_ms', 'time_signature', 'emotion'], axis=1)
@@ -269,7 +264,6 @@ def recomm(emotion):
         # this contains the ohe columns till current year
         data_2 = data_filtered.loc[:, "popu|0":f"year|{datetime.today().year}"].iloc[i].values
         # this contains the artists only columns
-        print(data_filtered.columns, "\n\n")
         data_3 = data_filtered.iloc[:, -len(artists_excel['artists']):].iloc[i].values
 
         sim1 = np.linalg.norm(recomm_vec1 - data_1)  # euclidian distance
@@ -282,9 +276,7 @@ def recomm(emotion):
         # simply using dot product
         
         sim2 = np.dot(recomm_vec2, data_2)
-        # print("1: ",len(recomm_vec3), "2: ", data_3.columns)
         sim3 = np.dot(recomm_vec3, data_3)
-        
         l1.append(round(sim1, 6))
         l2.append(round(sim2, 6))
         l3.append(round(sim3, 6))
@@ -308,8 +300,6 @@ def recomm(emotion):
     recommendations = recommendations.sort_values(['sim'], axis=0, ascending=False).dropna()
 
     recommendations = recommendations.reset_index().drop('index', axis=1)
-    # print(recommendations.head(10))
-    # print("No. of Song Recommendations: ", len(recommendations))
 
     return render_template('recomm.html', zipped = zip(recommendations['name'], recommendations['id']), emotion=emotion)
 
