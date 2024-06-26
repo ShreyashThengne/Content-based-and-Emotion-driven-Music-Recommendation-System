@@ -4,5 +4,7 @@ spotipy
 opencv-python
 deepface
 flask
+tf-keras
 tensorflow
+keras
 python-dotenv
