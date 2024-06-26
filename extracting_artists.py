@@ -3,8 +3,13 @@ import pandas as pd
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import datetime
+import os
+from dotenv import load_dotenv
 
-client_credentials_manager = SpotifyClientCredentials(client_id='ac1f41b0f93c45ac8af29623bdf94e0a', client_secret='f2460ff1a77e4c6db5eca633dde46d3b')
+load_dotenv()
+
+client_credentials_manager = SpotifyClientCredentials(client_id=os.getenv('CLIENT_ID'), client_secret=os.getenv('CLIENT_SECRET'))
+
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 

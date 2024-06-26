@@ -16,7 +16,10 @@ import cv2
 from deepface import DeepFace
 from flask import Flask, render_template, url_for, request, redirect
 import time
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = Flask(__name__)
 print("running!")
@@ -30,7 +33,7 @@ recomm_vec2 = ''
 recomm_vec3 = ''
 @app.route('/link', methods= ['POST'])
 def main_app():
-    client_credentials_manager = SpotifyClientCredentials(client_id='ac1f41b0f93c45ac8af29623bdf94e0a', client_secret='f2460ff1a77e4c6db5eca633dde46d3b')
+    client_credentials_manager = SpotifyClientCredentials(client_id=os.getenv('CLIENT_ID'), client_secret=os.getenv('CLIENT_SECRET'))
     sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
     # playlist_link = input("Enter the link: ")
