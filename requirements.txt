@@ -1,0 +1,7 @@
+pandas
+numpy
+spotipy
+opencv-python
+deepface
+flask
+tensorflow
