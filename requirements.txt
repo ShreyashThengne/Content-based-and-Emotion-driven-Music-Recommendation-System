@@ -8,3 +8,4 @@ tf-keras
 tensorflow
 keras
 python-dotenv
+openpyxl
