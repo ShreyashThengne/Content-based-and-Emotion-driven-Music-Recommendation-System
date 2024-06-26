@@ -5,4 +5,5 @@ opencv-python
 deepface
 flask
 tensorflow
+keras
 python-dotenv
